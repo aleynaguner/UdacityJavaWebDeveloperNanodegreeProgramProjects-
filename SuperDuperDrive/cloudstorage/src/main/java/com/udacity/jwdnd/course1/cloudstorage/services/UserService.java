@@ -34,4 +34,8 @@ public class UserService {
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
     }
+
+    public Integer getUserIdByUsername(String username) {
+        return userMapper.getUserIdByUsername(username);
+    }
 }

@@ -20,10 +20,10 @@ public interface CredentialMapper {
 
     //READ
     @Select("SELECT * FROM CREDENTIALS WHERE credentialId = #{credentialId}")
-    Credential getCredentialById(String noteId);
+    Credential getCredentialById(Integer noteId);
 
     @Select("SELECT * FROM CREDENTIALS WHERE userId = #{userId}")
-    List<Credential> getCredentialsForUser(String userId);
+    List<Credential> getCredentialsForUser(Integer userId);
 
 
 }

@@ -13,7 +13,7 @@ public interface UserMapper {
 
     //READ
     @Select("SELECT * FROM USERS WHERE username = #{userName}")
-    User getUserByUserName(String userName);
+    User getUserByUsername(String userName);
 
     @Select("SELECT * FROM USERS WHERE userid = #{userId}")
     User getUserById(String userId);

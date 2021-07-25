@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.sql.Array;
-
 @Controller
 @RequestMapping("/signup")
 public class SignupController {
@@ -33,8 +31,8 @@ public class SignupController {
         String errorMessageForUsedUsername = "The username already used.";
         String errorMessageForDatabase = "Error occurred while creating new user.";
 
-        if(!userService.isUserNameAvailable(user.getUsername())){
-            return signupError = errorMessageForUsedUsername;
+        if(!userService.isUsernameAvailable(user.getUsername())){
+            signupError = errorMessageForUsedUsername;
         }
 
         if (signupError == null) {

@@ -18,10 +18,10 @@ public class NoteService {
         this.userMapper = userMapper;
     }
 
-    public void createNewNote(Note note, String username) {
+    public Integer createNote(String noteTitle, String noteDescription, String username) {
         Integer userId = userMapper.getUserIdByUsername(username);
-        note.setUserId(userId);
-        noteMapper.createNewNote(note);
+        Note note = new Note(0, noteTitle, noteDescription, userId);
+        return noteMapper.createNote(note);
     }
 
     public Note getNoteById(Integer noteId) {
@@ -32,8 +32,12 @@ public class NoteService {
         return noteMapper.getNotesForUser(userId);
     }
 
-    public void deleteNoteById(Integer noteId) {
-        noteMapper.deleteNoteById(noteId);
+    public Integer updateNote(Integer noteId, String noteTitle, String noteDescription) {
+        return noteMapper.updateNote(noteId, noteTitle, noteDescription);
+    }
+
+    public int deleteNoteById(Integer noteId) {
+        return noteMapper.deleteNoteById(noteId);
     }
 
 }

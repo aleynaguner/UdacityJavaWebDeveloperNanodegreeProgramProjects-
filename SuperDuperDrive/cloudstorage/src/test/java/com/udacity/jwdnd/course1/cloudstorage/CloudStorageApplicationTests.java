@@ -93,4 +93,37 @@ class CloudStorageApplicationTests {
 		Assertions.assertTrue(loginPage.loginError());
 	}
 
+	@Test
+	public void successfulLogoutWithLogoutMesssage() {
+		driver.get(baseURL + "/signup");
+
+		SignupPage signupPage = new SignupPage(driver);
+		signupPage.signup(firstName, lastName, username, password);
+
+		driver.get(baseURL + "/login");
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login(username, password);
+
+		driver.get(baseURL + "/home");
+	}
+
+	@Test
+	public void getHomePageWithAuthorizedUser() {
+
+		driver.get(baseURL + "/signup");
+
+		SignupPage signupPage = new SignupPage(driver);
+		signupPage.signup(firstName, lastName, username, password);
+
+		driver.get(baseURL + "/login");
+
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.login(username, password);
+
+		driver.get(baseURL + "/home");
+
+		Assertions.assertEquals("Home", driver.getTitle());
+	}
+
 }

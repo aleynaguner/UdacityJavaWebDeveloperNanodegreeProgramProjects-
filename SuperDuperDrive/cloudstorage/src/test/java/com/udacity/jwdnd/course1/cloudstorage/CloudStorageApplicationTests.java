@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
+import com.udacity.jwdnd.course1.cloudstorage.pages.HomePage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.LoginPage;
 import com.udacity.jwdnd.course1.cloudstorage.pages.SignupPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -8,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CloudStorageApplicationTests {
@@ -55,7 +54,7 @@ class CloudStorageApplicationTests {
 
 	@Test
 	public void getLoginPageWithUnauthorizeUserWhenAnotherEndpointRequest() {
-		driver.get(baseURL+ "/note/create-note");
+		driver.get(baseURL+ "/home");
 		Assertions.assertEquals("Login", driver.getTitle());
 	}
 
@@ -101,11 +100,14 @@ class CloudStorageApplicationTests {
 		signupPage.signup(firstName, lastName, username, password);
 
 		driver.get(baseURL + "/login");
-
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.login(username, password);
 
 		driver.get(baseURL + "/home");
+		HomePage homePage = new HomePage(driver);
+		homePage.logout();
+
+		Assertions.assertTrue(loginPage.logoutStatus());
 	}
 
 	@Test

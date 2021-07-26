@@ -19,21 +19,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     private UserService userService;
+    private FileService fileService;
     private NoteService noteService;
+    private CredentialService credentialService;
 
-    public HomeController(UserService userService, NoteService noteService) {
+    public HomeController(UserService userService, FileService fileService, NoteService noteService, CredentialService credentialService) {
         this.userService = userService;
+        this.fileService = fileService;
         this.noteService = noteService;
+        this.credentialService = credentialService;
     }
 
     @GetMapping()
     public String homeView(Authentication authentication,
+                           @ModelAttribute("files") File file,
                            @ModelAttribute("notes") Note note,
+                           @ModelAttribute("credentials") Credential credential,
                            Model model) {
 
         Integer userId = userService.getUserIdByUsername(authentication.getName());
 
+        model.addAttribute("files", this.fileService.getFilesForUser(userId));
         model.addAttribute("notes", this.noteService.getNotesForUser(userId));
+        model.addAttribute("credentials", this.credentialService.getCredentialsForUser(userId));
 
         return "home";
     }

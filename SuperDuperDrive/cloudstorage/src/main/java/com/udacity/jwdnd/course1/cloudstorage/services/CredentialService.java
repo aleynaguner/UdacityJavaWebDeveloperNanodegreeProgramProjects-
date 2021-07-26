@@ -18,10 +18,10 @@ public class CredentialService {
         this.userMapper = userMapper;
     }
 
-    public void createNewCredential(Credential credential, String username) {
+    public int createCredential(String url, String username, String key, String password) {
         Integer userId = userMapper.getUserIdByUsername(username);
-        credential.setUserId(userId);
-        credentialMapper.createNewCredential(credential);
+        Credential credential = new Credential(0, url, username, key, password, userId );
+        return credentialMapper.createCredential(credential);
     }
 
     public Credential getCredentialById(Integer credentialId) {
@@ -32,11 +32,11 @@ public class CredentialService {
         return credentialMapper.getCredentialsForUser(userId);
     }
 
-    public Credential updateCredential(Credential credential) {
-        return credentialMapper.updateCredential(credential);
+    public int updateCredential(Integer credentialId, String url, String username, String key, String password) {
+        return credentialMapper.updateCredential(credentialId, url, username, key, password);
     }
 
-    public void deleteCredentialById(Integer credentialId) {
-        credentialMapper.deleteCredentialById(credentialId);
+    public int deleteCredentialById(Integer credentialId) {
+        return credentialMapper.deleteCredentialById(credentialId);
     }
 }

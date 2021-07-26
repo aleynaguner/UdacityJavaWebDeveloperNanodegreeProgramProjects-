@@ -20,10 +20,6 @@ public interface FileMapper {
     @Select("SELECT * FROM FILES WHERE userId = #{userId}")
     List<File> getFilesForUser(Integer userId);
 
-    //UPDATE
-    @Update("UPDATE FILES SET fileName = #{fileName}, contentType = #{contentType}, fileSize = #{fileSize}, fileData = #{fileData} WHERE fileId = #{fileId}")
-    int updateFile(Integer fileId, String noteTitle, String noteDescription);
-
     //DELETE
     @Delete("DELETE FROM FILES WHERE fileId = #{fileId}")
     int deleteFileById(Integer fileId);

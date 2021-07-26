@@ -20,17 +20,13 @@ public class NoteController {
         this.userService = userService;
     }
 
-    public String resultStatus(Integer result) {
-       return result > 0 ? "success" : "error";
-    }
-
     @GetMapping
     public String homeView(Authentication authentication,
                            @ModelAttribute("notes") Note note,
                            Model model) {
 
         Integer userId = userService.getUserIdByUsername(authentication.getName());
-        model.addAttribute("notes", this.noteService.getNotesForUser(userId));
+        model.addAttribute("notes", noteService.getNotesForUser(userId));
 
         return "home";
     }
@@ -53,7 +49,7 @@ public class NoteController {
         }
 
         model.addAttribute("notes", noteService.getNotesForUser(userId));
-        model.addAttribute("result", this.resultStatus(result));
+        model.addAttribute("result", resultStatus(result));
 
         return "result";
     }
@@ -69,7 +65,7 @@ public class NoteController {
         Integer userId = userService.getUserIdByUsername(authentication.getName());
         model.addAttribute("notes", noteService.getNotesForUser(userId));
 
-        model.addAttribute("result", this.resultStatus(result));
+        model.addAttribute("result", resultStatus(result));
 
         return "result";
     }
@@ -85,8 +81,12 @@ public class NoteController {
         Integer userId = userService.getUserIdByUsername(authentication.getName());
         model.addAttribute("notes", noteService.getNotesForUser(userId));
 
-        model.addAttribute("result", this.resultStatus(result));
+        model.addAttribute("result", resultStatus(result));
 
         return "result";
+    }
+
+    public String resultStatus(Integer result) {
+        return result > 0 ? "success" : "error";
     }
 }

@@ -90,7 +90,7 @@ public class CredentialController {
         Integer userId = userService.getUserIdByUsername(authentication.getName());
         model.addAttribute("credentials", credentialService.getCredentialsForUser(userId));
 
-        model.addAttribute("result", this.resultStatus(result));
+        model.addAttribute("result", resultStatus(result));
 
         return "result";
     }

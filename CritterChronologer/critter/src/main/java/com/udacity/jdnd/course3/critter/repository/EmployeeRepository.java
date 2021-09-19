@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findEmployeeById(Long employeeId);
+    Employee save(Employee employee);
     List<Employee> findEmployeesByDaysAvailable(DayOfWeek dayOfWeek);
 }
 

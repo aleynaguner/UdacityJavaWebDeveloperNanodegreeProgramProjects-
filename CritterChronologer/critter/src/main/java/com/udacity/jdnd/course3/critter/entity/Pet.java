@@ -1,6 +1,6 @@
 package com.udacity.jdnd.course3.critter.entity;
 
-import com.udacity.jdnd.course3.critter.pet.PetType;
+import com.udacity.jdnd.course3.critter.enums.PetType;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Pet {
     private PetType type;
 
     @ManyToOne(targetEntity = Customer.class)
-    private Customer petOwner;
+    private Customer customer;
 
     private LocalDate birthDate;
     private String notes;
@@ -49,12 +49,12 @@ public class Pet {
         this.type = type;
     }
 
-    public Customer getPetOwner() {
-        return petOwner;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setPetOwner(Customer petOwner) {
-        this.petOwner = petOwner;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public LocalDate getBirthDate() {

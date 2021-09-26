@@ -13,6 +13,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     List<Schedule> findAll();
     Schedule save(Schedule schedule);
     List<Schedule> findSchedulesByEmployeeList(Employee employee);
-    List<Schedule> findSchedulesByPetList(Pet pet);
-    List<Schedule> findSchedulesByPetListIn(List<Pet> petList);
+    List<Schedule> findSchedulesByPets(Pet pet);
+    List<Schedule> findSchedulesByPetsIn(List<Pet> pets);
 }

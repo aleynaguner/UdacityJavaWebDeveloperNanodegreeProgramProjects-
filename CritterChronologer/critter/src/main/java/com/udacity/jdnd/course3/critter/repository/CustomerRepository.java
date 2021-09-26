@@ -11,6 +11,6 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Customer findCustomerById(Long customerId);
     List<Customer> findAll();
-    Customer findCustomerByPet(Pet pet);
+    Customer findCustomerByPets(Pet pet);
     Customer save(Customer customer);
 }

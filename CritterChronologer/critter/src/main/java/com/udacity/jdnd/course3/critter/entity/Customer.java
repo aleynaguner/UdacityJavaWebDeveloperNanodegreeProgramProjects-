@@ -20,7 +20,20 @@ public class Customer {
     private String notes;
 
     @OneToMany(targetEntity = Pet.class)
-    private List<Pet> petList;
+    private List<Pet> pets;
+
+    public Customer() {
+    }
+
+    public Customer(String name, String phoneNumber, String notes) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.notes = notes;
+    }
+
+    public void addNewPetToCustomer(Pet pet){
+        pets.add(pet);
+    }
 
     public Long getId() {
         return id;
@@ -55,10 +68,10 @@ public class Customer {
     }
 
     public List<Pet> getPets() {
-        return petList;
+        return pets;
     }
 
-    public void setPets(List<Pet> petList) {
-        this.petList = petList;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 }

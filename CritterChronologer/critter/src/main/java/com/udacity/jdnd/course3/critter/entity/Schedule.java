@@ -19,9 +19,17 @@ public class Schedule {
     private List<Employee> employeeList;
 
     @ManyToMany(targetEntity = Pet.class)
-    private List<Pet> petList;
+    private List<Pet> pets;
 
     private LocalDate date;
+
+    public Schedule() {
+    }
+
+    public Schedule(LocalDate date, Set<EmployeeSkill> activities) {
+        this.date = date;
+        this.activities = activities;
+    }
 
     @ElementCollection
     private Set<EmployeeSkill> activities;
@@ -42,12 +50,12 @@ public class Schedule {
         this.employeeList = employeeList;
     }
 
-    public List<Pet> getPetList() {
-        return petList;
+    public List<Pet> getPets() {
+        return pets;
     }
 
-    public void setPetList(List<Pet> petList) {
-        this.petList = petList;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 
     public LocalDate getDate() {

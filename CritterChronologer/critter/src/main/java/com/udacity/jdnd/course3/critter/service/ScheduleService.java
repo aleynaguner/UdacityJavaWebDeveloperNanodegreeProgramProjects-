@@ -18,13 +18,22 @@ public class ScheduleService {
     @Autowired
     ScheduleRepository scheduleRepository;
 
+    @Autowired
+    PetRepository petRepository;
+
+    @Autowired
+    EmployeeRepository employeeRepository;
+
     public List<Schedule> getAllSchedules() {
         return scheduleRepository.findAll();
     }
 
-    public Schedule saveSchedule(List<Employee> employees, List<Pet> pets, Schedule schedule) {
+    public Schedule saveSchedule(List<Long> employeeIds, List<Long> petIds, Schedule schedule) {
+        List<Employee> employees = employeeRepository.findAllById(employeeIds);
+        List<Pet> pets = petRepository.findAllById(petIds);
+
         schedule.setEmployeeList(employees);
-        schedule.setPetList(pets);
+        schedule.setPets(pets);
         return scheduleRepository.save(schedule);
     }
 
@@ -33,10 +42,10 @@ public class ScheduleService {
     }
 
     public List<Schedule> getScheduleForPet(Pet pet) {
-        return scheduleRepository.findSchedulesByPetList(pet);
+        return scheduleRepository.findSchedulesByPets(pet);
     }
 
     public List<Schedule> getScheduleForCustomer(Customer customer) {
-        return scheduleRepository.findSchedulesByPetListIn(customer.getPets());
+        return scheduleRepository.findSchedulesByPetsIn(customer.getPets());
     }
 }

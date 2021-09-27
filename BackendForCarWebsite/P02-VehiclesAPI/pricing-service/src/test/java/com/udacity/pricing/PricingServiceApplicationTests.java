@@ -1,16 +1,46 @@
 package com.udacity.pricing;
 
+import com.udacity.pricing.api.PricingController;
+import com.udacity.pricing.service.PriceException;
+import com.udacity.pricing.service.PricingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@WebMvcTest(PricingController.class)
 public class PricingServiceApplicationTests {
+
+	@Autowired
+	MockMvc mockMvc;
+
+	@Mock
+	PricingService pricingService;
 
 	@Test
 	public void contextLoads() {
+	}
+
+	@Test
+	public void assertStatusOkWhenGetPriceById() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders
+				.get("/services/price?vehicleId=1")
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
+
+	@Test(expected = PriceException.class)
+	public void assertPriceExceptionWhenVecihlesIdBiggerThanExpected() throws PriceException {
+		Long vehicleId = new Long(26381726);
+		pricingService.getPrice(vehicleId);
 	}
 
 }

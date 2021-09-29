@@ -51,10 +51,7 @@ public class CarService {
          *   If it does not exist, throw a CarNotFoundException
          *   Remove the below code as part of your implementation.
          */
-        Optional<Car> car = repository.findById(id);
-        if(!car.isPresent()) {
-            throw new CarNotFoundException("Car not found");
-        }
+        Car car = repository.findById(id).orElseThrow(CarNotFoundException::new);
 
         /**
          * Use the Pricing Web client you create in `VehiclesApiApplication`
@@ -63,7 +60,7 @@ public class CarService {
          * Note: The car class file uses @transient, meaning you will need to call
          *   the pricing service each time to get the price.
          */
-        car.get().setPrice(priceClient.getPrice(id));
+        car.setPrice(priceClient.getPrice(id));
 
 
         /**
@@ -74,10 +71,10 @@ public class CarService {
          * Note: The Location class file also uses @transient for the address,
          * meaning the Maps service needs to be called each time for the address.
          */
-        car.get().setLocation(mapsClient.getAddress(car.get().getLocation()));
+        car.setLocation(mapsClient.getAddress(car.getLocation()));
 
 
-        return car.get();
+        return car;
     }
 
     /**

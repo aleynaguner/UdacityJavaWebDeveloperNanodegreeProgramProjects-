@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="471e9a8a-f1a7-4338-b18e-4cd3545d2e08" name="Changes" comment="[fix] review updates">
-      <change afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/security/WebSecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/security/WebSecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/application.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,7 @@
       <workItem from="1633258581925" duration="1759000" />
       <workItem from="1633261715179" duration="634000" />
       <workItem from="1633276791389" duration="91000" />
-      <workItem from="1633279474564" duration="643000" />
+      <workItem from="1633279474564" duration="645000" />
     </task>
     <task id="LOCAL-00001" summary="Add tests">
       <created>1633197440842</created>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 
 @Controller
 @RequestMapping("/credential")
@@ -50,11 +51,7 @@ public class CredentialController {
         Integer result = 0;
 
         if(credential != null) {
-            if(credential.getCredentialId() == null) {
-                result = credentialService.createCredential(credential.getUrl(), username, encodedKey, encryptedPassword);
-            } else {
-                result = credentialService.updateCredential(credential.getCredentialId(), credential.getUrl(), username, encodedKey, encryptedPassword);
-            }
+            result = credentialService.createCredential(credential.getUrl(), credential.getUsername(), encodedKey, encryptedPassword, userId);
         }
 
         model.addAttribute("credentials", credentialService.getCredentialsForUser(userId));
@@ -72,8 +69,9 @@ public class CredentialController {
         Integer result = 0;
         result = credentialService.updateCredential(credential.getCredentialId(), credential.getUrl(), credential.getUsername(), credential.getKey(), encryptionService.decryptValue(credential.getPassword(), credential.getKey()));
         Integer userId = userService.getUserIdByUsername(authentication.getName());
-        model.addAttribute("credentials", credentialService.getCredentialsForUser(userId));
+        List<Credential> credentialList = credentialService.getCredentialsForUser(userId);
 
+        model.addAttribute("credentials", credentialList);
         model.addAttribute("result", resultStatus(result));
 
         return "result";

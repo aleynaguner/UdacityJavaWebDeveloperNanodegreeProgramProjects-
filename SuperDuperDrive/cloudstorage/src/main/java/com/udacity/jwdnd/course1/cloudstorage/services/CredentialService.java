@@ -18,8 +18,7 @@ public class CredentialService {
         this.userMapper = userMapper;
     }
 
-    public int createCredential(String url, String username, String key, String password) {
-        Integer userId = userMapper.getUserIdByUsername(username);
+    public int createCredential(String url, String username, String key, String password, Integer userId) {
         Credential credential = new Credential(0, url, username, key, password, userId );
         return credentialMapper.createCredential(credential);
     }

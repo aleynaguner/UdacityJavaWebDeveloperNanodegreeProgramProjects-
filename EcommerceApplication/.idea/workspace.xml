@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="471e9a8a-f1a7-4338-b18e-4cd3545d2e08" name="Changes" comment="add additonal logs to controllers">
-      <change afterPath="$PROJECT_DIR$/../Ecommerce/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Ecommerce/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +82,7 @@
       <workItem from="1633197174296" duration="3409000" />
       <workItem from="1633209482924" duration="2277000" />
       <workItem from="1633258581925" duration="1759000" />
-      <workItem from="1633261715179" duration="562000" />
+      <workItem from="1633261715179" duration="634000" />
     </task>
     <task id="LOCAL-00001" summary="Add tests">
       <created>1633197440842</created>

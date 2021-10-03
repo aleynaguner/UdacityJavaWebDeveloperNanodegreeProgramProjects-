@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("/file")
@@ -43,6 +44,27 @@ public class FileController {
         String username = authentication.getName();
         Integer userId = userService.getUserIdByUsername(authentication.getName());
         Integer result = 0;
+
+        String fileName = file.getOriginalFilename();
+        String[] fileNameList = fileService.getFileNameList(userId);
+
+        if(file.getSize() == 0){
+            model.addAttribute("result", "errorPlus");
+            model.addAttribute("message", "You cannot upload a empty file.");
+            return "result";
+        } else if(file.getSize() > 1000000){
+            model.addAttribute("result", "errorPlus");
+            model.addAttribute("message", "Too large file for upload.");
+            return "result";
+        } else if(username.isEmpty()) {
+            model.addAttribute("result", "errorPlus");
+            model.addAttribute("message", "Invalid username.");
+            return "result";
+        } else if(Arrays.asList(fileNameList).contains(fileName)){
+            model.addAttribute("result", "errorPlus");
+            model.addAttribute("message", "Existing filename. Change filename or file.");
+            return "result";
+        }
 
         try{
             result = fileService.uploadFile(file, username);

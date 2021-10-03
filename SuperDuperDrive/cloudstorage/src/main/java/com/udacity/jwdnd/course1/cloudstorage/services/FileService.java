@@ -50,4 +50,6 @@ public class FileService {
     public int deleteFileById(Integer fileId) {
        return fileMapper.deleteFileById(fileId);
     }
+
+    public String[] getFileNameList(Integer userId){ return fileMapper.getFileNameList(userId); }
 }

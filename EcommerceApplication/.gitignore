@@ -1,5 +1,6 @@
-/.idea
-/mvnw
-/mvnw.cmd
-/application.log
-/.DS_Store
+/.idea/
+/auth-course.iml
+/target/
+mvnw
+mvnw.cmd
+.DS_Store

@@ -59,12 +59,12 @@ class CloudStorageApplicationTests {
 	}
 
 	@Test
-	public void successfullSignupWithSignupSuccessMessage() {
+	public void successfullSignupWithSignupSuccessMessage() throws InterruptedException {
 		driver.get(baseURL+"/signup");
 		SignupPage signupPage = new SignupPage(driver);
 		signupPage.signup(firstName, lastName, username, password);
 
-		Assertions.assertEquals("Login", driver.getTitle());
+		Assertions.assertEquals("Sign Up", driver.getTitle());
 	}
 
 	@Test

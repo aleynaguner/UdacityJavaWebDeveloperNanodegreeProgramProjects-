@@ -64,7 +64,7 @@ class CloudStorageApplicationTests {
 		SignupPage signupPage = new SignupPage(driver);
 		signupPage.signup(firstName, lastName, username, password);
 
-		Assertions.assertTrue(signupPage.signupSuccess());
+		Assertions.assertEquals("Login", driver.getTitle());
 	}
 
 	@Test
@@ -72,7 +72,7 @@ class CloudStorageApplicationTests {
 		driver.get(baseURL+"/signup");
 		SignupPage signupPage = new SignupPage(driver);
 		signupPage.signup(firstName, lastName, username, password);
-
+		driver.get(baseURL+"/signup");
 		signupPage.signup(firstName, lastName, username, password);
 		Assertions.assertTrue(signupPage.signupError());
 	}

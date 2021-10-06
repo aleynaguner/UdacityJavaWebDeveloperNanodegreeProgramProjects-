@@ -39,7 +39,7 @@ public class CredentialController {
     }
 
     @PostMapping("/create-credential")
-    public String createNewNote(Authentication authentication,
+    public String createNewCredential(Authentication authentication,
                                 @ModelAttribute("credentials") Credential credential,
                                 Model model) {
 
@@ -61,7 +61,7 @@ public class CredentialController {
     }
 
     @GetMapping("/edit-credential/{credentialId}")
-    public String editNote(Authentication authentication,
+    public String editCredential(Authentication authentication,
                            @ModelAttribute("credentials") Credential credential,
                            @PathVariable Integer credentialId,
                            Model model) {
@@ -78,7 +78,7 @@ public class CredentialController {
     }
 
     @GetMapping("/delete-credential/{credentialId}")
-    public String deleteNote(Authentication authentication,
+    public String deleteCredential(Authentication authentication,
                              @ModelAttribute("credentials") Credential credential,
                              @PathVariable Integer credentialId,
                              Model model) {

@@ -79,22 +79,9 @@ public class FileController {
     }
 
     @GetMapping("/download-file/{fileId}")
-    public String downloadFile(Authentication authentication,
-                               @PathVariable Integer fileId,
-                               Model model) {
-
-        Integer userId = userService.getUserIdByUsername(authentication.getName());
+    public ResponseEntity downloadFile(@PathVariable Integer fileId) {
         File file = fileService.getFileDetail(fileId);
-        Integer result = 0;
-
-        ResponseEntity responseEntity = fileService.downloadFile(file);
-
-        result = (responseEntity != null) ? 1 : 0;
-
-        model.addAttribute("files", fileService.getFilesForUser(userId));
-        model.addAttribute("result", this.resultStatus(result));
-
-        return "result";
+        return fileService.downloadFile(file);
     }
 
     @GetMapping("/delete-file/{fileId}")

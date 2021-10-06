@@ -39,7 +39,7 @@ public class CredentialController {
     }
 
     @PostMapping("/create-credential")
-    public String createNewCredential(Authentication authentication,
+    public String createOrUpdateNewCredential(Authentication authentication,
                                 @ModelAttribute("credentials") Credential credential,
                                 Model model) {
 
@@ -50,44 +50,13 @@ public class CredentialController {
         Integer userId = userService.getUserIdByUsername(username);
         Integer result = 0;
 
-        if(credential != null) {
+        if(credential != null && credential.getCredentialId() == null) {
             result = credentialService.createCredential(credential.getUrl(), credential.getUsername(), encodedKey, encryptedPassword, userId);
+        } else {
+            result = credentialService.updateCredential(credential.getCredentialId(), credential.getUrl(), credential.getUsername(), encodedKey, encryptedPassword, userId);
         }
 
         model.addAttribute("credentials", credentialService.getCredentialsForUser(userId));
-        model.addAttribute("result", resultStatus(result));
-
-        return "result";
-    }
-
-    @GetMapping("/edit-credential/{credentialId}")
-    public String editCredential(Authentication authentication,
-                           @ModelAttribute("credentials") Credential credential,
-                           @PathVariable Integer credentialId,
-                           Model model) {
-
-        Integer result = 0;
-        result = credentialService.updateCredential(credential.getCredentialId(), credential.getUrl(), credential.getUsername(), credential.getKey(), encryptionService.decryptValue(credential.getPassword(), credential.getKey()));
-        Integer userId = userService.getUserIdByUsername(authentication.getName());
-        List<Credential> credentialList = credentialService.getCredentialsForUser(userId);
-
-        model.addAttribute("credentials", credentialList);
-        model.addAttribute("result", resultStatus(result));
-
-        return "result";
-    }
-
-    @GetMapping("/delete-credential/{credentialId}")
-    public String deleteCredential(Authentication authentication,
-                             @ModelAttribute("credentials") Credential credential,
-                             @PathVariable Integer credentialId,
-                             Model model) {
-
-        Integer result = 0;
-        result = credentialService.deleteCredentialById(credentialId);
-        Integer userId = userService.getUserIdByUsername(authentication.getName());
-        model.addAttribute("credentials", credentialService.getCredentialsForUser(userId));
-
         model.addAttribute("result", resultStatus(result));
 
         return "result";

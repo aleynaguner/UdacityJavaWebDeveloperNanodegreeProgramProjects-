@@ -22,8 +22,8 @@ public interface CredentialMapper {
     List<Credential> getCredentialsForUser(Integer userId);
 
     //UPDATE
-    @Update("UPDATE CREDENTIALS SET url = #{url}, username = #{username}, key = #{key}, password = #{password} WHERE credentialId = #{credentialId}")
-    int updateCredential(Integer credentialId, String url, String username, String key, String password);
+    @Update("UPDATE CREDENTIALS SET url = #{url}, username = #{username}, key = #{key}, password = #{password}, userId = #{userId} WHERE credentialId = #{credentialId}")
+    int updateCredential(Integer credentialId, String url, String username, String key, String password, Integer userId);
 
     //DELETE
     @Delete("DELETE FROM CREDENTIALS WHERE credentialId = #{credentialId}")

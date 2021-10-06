@@ -31,8 +31,8 @@ public class CredentialService {
         return credentialMapper.getCredentialsForUser(userId);
     }
 
-    public int updateCredential(Integer credentialId, String url, String username, String key, String password) {
-        return credentialMapper.updateCredential(credentialId, url, username, key, password);
+    public int updateCredential(Integer credentialId, String url, String username, String key, String password, Integer userId) {
+        return credentialMapper.updateCredential(credentialId, url, username, key, password, userId);
     }
 
     public int deleteCredentialById(Integer credentialId) {

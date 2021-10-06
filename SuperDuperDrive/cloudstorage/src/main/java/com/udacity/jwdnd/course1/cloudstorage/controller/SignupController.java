@@ -45,11 +45,11 @@ public class SignupController {
 
         if (signupError == null) {
             model.addAttribute("signupSuccess", true);
-            return "redirect:/login";
         } else {
             model.addAttribute("signupError", signupError);
-            return "signup";
         }
+
+        return "signup";
 
     }
 

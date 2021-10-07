@@ -26,7 +26,7 @@ public class SignupController {
     }
 
     @PostMapping()
-    public String signupUser(@ModelAttribute User user, Model model) {
+    public String signupUser(RedirectAttributes redirectAttributes, @ModelAttribute User user, Model model) {
 
         String signupError = null;
         String errorMessageForUsedUsername = "The username already used.";
@@ -45,11 +45,14 @@ public class SignupController {
 
         if (signupError == null) {
             model.addAttribute("signupSuccess", true);
+            redirectAttributes.addFlashAttribute("signupSuccess", "signupSuccess");
+            return "redirect:/login";
         } else {
             model.addAttribute("signupError", signupError);
+            return "signup";
         }
 
-        return "signup";
+
 
     }
 

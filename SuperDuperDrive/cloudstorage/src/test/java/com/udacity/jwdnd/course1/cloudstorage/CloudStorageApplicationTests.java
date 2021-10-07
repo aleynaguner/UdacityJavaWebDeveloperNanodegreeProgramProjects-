@@ -107,7 +107,7 @@ class CloudStorageApplicationTests {
 		HomePage homePage = new HomePage(driver);
 		homePage.logout();
 
-		Assertions.assertTrue(loginPage.logoutStatus());
+		Assertions.assertEquals("Login", driver.getTitle());
 	}
 
 	@Test

@@ -62,6 +62,22 @@ public class CredentialController {
         return "result";
     }
 
+    @GetMapping("/delete-credential/{credentialId}")
+    public String deleteCredential(Authentication authentication,
+                                   @ModelAttribute("credentials") Credential credential,
+                                   @PathVariable Integer credentialId,
+                                   Model model) {
+
+        Integer result = 0;
+        result = credentialService.deleteCredentialById(credentialId);
+        Integer userId = userService.getUserIdByUsername(authentication.getName());
+        model.addAttribute("credentials", credentialService.getCredentialsForUser(userId));
+
+        model.addAttribute("result", resultStatus(result));
+
+        return "result";
+    }
+
     public String resultStatus(Integer result) {
         return result > 0 ? "success" : "error";
     }
